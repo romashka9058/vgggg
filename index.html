@@ -1,57 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фото галерея</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        
-        .photo {
-            max-width: 100vw;
-            max-height: 100vh;
-            object-fit: cover;
-            display: block;
-            padding-bottom: 3vmin
-        }
-    </style>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+* { margin: 0; }
+.photo { 
+  max-width: 100vw; 
+  padding-bottom: 3vmin;
+  display: block;
+}
+
+
+</style></head>
 <body>
-    <!-- Галерея создается автоматически -->
-    <div id="gallery"></div>
+<div id="gallery"></div>
+<script>
 
-    <script>
-        // НАСТРОЙКИ - МЕНЯЙ ТОЛЬКО ЗДЕСЬ!
-        const PHOTOS = [
-            "1.jpg",
-            "2.jpg",
-            "3.jpg",
-            "4.jpg",
-            "5.jpg"
-        ];
-        
-        const FOLDER_PATH = "./"; // Путь к папке с фото (если используешь локальные)
-        const USE_LOCAL_PHOTOS = true; // true = локальные фото, false = ссылки из массива выше
 
-        // Автоматическое создание галереи
-        const gallery = document.getElementById('gallery');
-        
-        PHOTOS.forEach((photo, index) => {
-            const img = document.createElement('img');
-            img.className = 'photo';
-            img.alt = `${index + 1}`;
-            
-            if (USE_LOCAL_PHOTOS) {
-                img.src = FOLDER_PATH + photo; // Для локальных файлов
-            } else {
-                img.src = photo; // Для ссылок из интернета
-            }
-            
-            gallery.appendChild(img);
-        });
-    </script>
+const gallery = document.getElementById('gallery');
+
+for (let i = 1; i <= 100; i++) {
+  const img = new Image();
+  img.className = 'photo';
+  img.src = './' + i + '.jpg';
+
+  img.onload = () => gallery.appendChild(img);
+  img.onerror = () => {};
+}
+
+
+</script>
 </body>
 </html>
